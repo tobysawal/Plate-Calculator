@@ -1,9 +1,9 @@
 weight = int(input("Enter desired weight: "))
 bar = int(input("Enter bar weight: "))
 kilolbs = str(input("imperial or metric: ")).lower()
-#olynorm = str(input("Olympic or Standard: "))
+olynorm = str(input("Olympic or Standard: ")).lower()
 
-def imperial(weight, bar):
+def imperialoly(weight, bar):
   weights = {
   "red": 0,
   "blue": 0,
@@ -44,7 +44,7 @@ def imperial(weight, bar):
       weights["black2"] += 1
   return(weights)
 
-def metric(weight, bar):
+def metricoly(weight, bar):
   weights = {
   "red": 0,
   "blue": 0,
@@ -90,13 +90,82 @@ def metric(weight, bar):
       weight -= .5
       weights["black2"] += 1
   return(weights)
-  
+
+def imperialnorm(weight, bar):
+  weights = {
+  "45": 0,
+	"25": 0,
+	"10": 0,
+	"5": 0,
+	"2.5": 0
+	}
+
+  weight = (weight-bar) / 2
+	
+  while weight > 0:
+    if weight >= 45:
+      weight -= 45
+      weights["45"] += 1
+    elif weight >= 25:
+      weight -= 25
+      weights["25"] += 1
+    elif weight >= 10:
+      weight -= 10
+      weights["10"] += 1
+    elif weight >= 5:
+      weight -= 5
+      weights["5"] += 1
+    elif weight >= 2.5:
+      weight -= 2.5
+      weights["2.5"] += 1
+  return(weights)
+
+def metricnorm(weight, bar):
+  weights = {
+  "20": 0,
+	"10": 0,
+	"5": 0,
+	"2.5": 0,
+	"1": 0
+	}
+
+  weight = (weight-bar) / 2
+	
+  while weight > 0:
+    if weight >= 20:
+      weight -= 20
+      weights["20"] += 1
+    elif weight >= 10:
+      weight -= 10
+      weights["10"] += 1
+    elif weight >= 5:
+      weight -= 5
+      weights["5"] += 1
+    elif weight >= 2.5:
+      weight -= 2.5
+      weights["2.5"] += 1
+    elif weight >= 1:
+      weight -= 1
+      weights["1"] += 1
+  return(weights)
 
 
+def main():
+	if olynorm == "olympic":
+		if kilolbs == "metric":
+			print(metricoly(weight, bar))
+		elif kilolbs == "imperial":
+			print(imperialoly(weight, bar))
+		else:
+			print("ERROR: invalid input")
+	elif olynorm == "standard":
+		if kilolbs == "metric":
+			print(metricnorm(weight, bar))
+		elif kilolbs == "imperial":
+			print(imperialnorm(weight, bar))
+		else:
+			print("ERROR: invalid input")
+	else:
+		print("ERROR: invalid input")
 
-if kilolbs == "imperial":
-  print(imperial(weight, bar))
-elif kilolbs == "metric":
-  print(metric(weight, bar))
-else:
-  print("invalid input")
+main()
