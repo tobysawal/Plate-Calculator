@@ -4,4 +4,4 @@ Use this plate calculator to figure out which plates to put on your barbell for 
 
 Accepts metric or imperial, olympic/standard weights, and any bar weight.
 
-This code will eventually become a webapp.
+I have plans to turn this into a webapp in the near future.
